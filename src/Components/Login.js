@@ -1,16 +1,7 @@
-import React, {useState} from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react'
+import { Link } from "react-router-dom";
 
-function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const navigate = useNavigate()
-
-    function login(e) {
-        e.preventDefault();
-
-        
-    }
+function Login(props) {
 
     return (
         <div className='container' style={{ marginTop: '5%' }}>
@@ -21,16 +12,16 @@ function Login() {
             </div>
             <div className='row'>
                 <div className='col'>
-                    <form action='' method='post' className='login-form'>
+                    <form action='' method='' className='login-form'>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email address</label>
-                            <input type="email" className="form-control" value={email} onChange={(e) => { setEmail(e.target.value) }} id="email" placeholder="Enter your email address" required/>
+                            <input type="email" className="form-control" value={props.email} onChange={(e) => { props.setEmail(e.target.value) }} id="email" placeholder="Enter your email address"/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label">Password</label>
-                            <input type="password" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} id="password" placeholder="Enter your password" required/>
+                            <input type="password" className="form-control" value={props.password} onChange={(e) => { props.setPassword(e.target.value) }} id="password" placeholder="Enter your password"/>
                         </div>
-                        <button type="submit" onSubmit={login} className="btn btn-outline-dark">Login</button>
+                        <button type="submit" onClick={props.login} className="btn btn-outline-dark">Login</button>
                     </form>
                 </div>
             </div>

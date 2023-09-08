@@ -1,6 +1,6 @@
 import React from 'react'
 
-function My_Teams() {
+function My_Teams(props) {
     return (
         <div className='container' style={{ marginTop: '5%' }}>
             <div className="row mb-3">
@@ -10,28 +10,20 @@ function My_Teams() {
             </div>
             <div className='row'>
                 <div className='col'>
-                    <table class="table table-striped" style={{ textAlign: 'center' }}>
+                    <table className="table table-striped" style={{ textAlign: 'center' }}>
                         <thead>
                             <tr>
                                 <th scope="col">Team</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a href='/team'>team a</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href='#'>team b</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href='#'>team c</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href='#'>team d</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href='#'>team e</a></td>
-                            </tr>
+                            {props.teams.length === 0? "No data to show" : props.teams.map((team, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{team}</td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>

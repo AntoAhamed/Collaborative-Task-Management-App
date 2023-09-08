@@ -2,12 +2,6 @@ import React from 'react'
 import { Outlet, Link } from "react-router-dom";
 
 function Navbar(props) {
-    function logout(e) {
-        e.preventDefault();
-
-        props.setUser({});
-    }
-
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -25,10 +19,16 @@ function Navbar(props) {
                                 <Link className="nav-link" aria-current="page" to="/create_team">Create Team</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/my_teams">My Teams</Link>
+                                <Link className="nav-link" to="/my_teams">Teams</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/tasks">Tasks</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/invitation">Invitation</Link>
                             </li>
                         </ul>
-                        <button onClick={logout} disabled={!props.user} className="btn btn-outline-light d-flex">Logout</button>
+                        <button onClick={props.logout} disabled={!props.userId} className="btn btn-outline-light d-flex">Logout</button>
                     </div>
                 </div>
             </nav>

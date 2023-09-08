@@ -1,7 +1,7 @@
 import React from 'react'
 import PHOTO from '../Assets/user.png'
 
-function Profile() {
+function Profile(props) {
     return (
         <div className='container' style={{ textAlign: 'center', fontSize: '20px' ,marginTop: '5%' }}>
             <div className="row mb-3">
@@ -12,10 +12,10 @@ function Profile() {
             <div className='row'>
                 <div className='col profile'>
                     <div className='mb-3'>
-                        <p>Username</p>
+                        <p>{props.users[props.userId-1]?.name}</p>
                     </div>
                     <div className='mb-3'>
-                        <p>Bio</p>
+                        <p>{props.users[props.userId-1]?.bio}</p>
                     </div>
                 </div>
             </div>
