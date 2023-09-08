@@ -90,7 +90,6 @@ function Invitation(props) {
                     )
                 })}
             </div>
-
         </div>
     )
 }

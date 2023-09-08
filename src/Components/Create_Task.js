@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Create_Task(props) {
-    const priorities = ["low","medium","high"];
+    const priorities = ["low", "medium", "high"];
     const handleAddrTypeChangeOfPriority = (e) => {
         const selectedPriority = priorities[e.target.value];
         props.setPrio(selectedPriority);

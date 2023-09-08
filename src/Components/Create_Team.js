@@ -13,7 +13,7 @@ function Create_Team(props) {
                     <form action='' method='' className='team-creation-form'>
                         <div className="mb-3">
                             <label htmlFor="team-name" className="form-label">Team name</label>
-                            <input type="text" className="form-control" value={props.newTeam} onChange={(e) => { props.setNewTeam(e.target.value) }} id="team-name" placeholder="Enter team name" autoFocus/>
+                            <input type="text" className="form-control" value={props.newTeam} onChange={(e) => { props.setNewTeam(e.target.value) }} id="team-name" placeholder="Enter team name" autoFocus />
                         </div>
                         <button type="submit" onClick={props.create} className="btn btn-outline-dark">Create Team</button>
                     </form>

@@ -3,7 +3,6 @@ import Task from './Task'
 import { Link } from 'react-router-dom'
 
 function Team(props) {
-    // eslint-disable-next-line
     const [tasks, setTasks] = useState([])
     const teamNames = props.teamNames?.map(teamName => teamName)
     const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0])
@@ -18,10 +17,10 @@ function Team(props) {
     const [newStatus, setNewStatus] = useState('')
 
     const editStatus = (id) => {
-        if(newStatus!==''){
+        if (newStatus !== '') {
             let t = tasks;
-            for(let i=0;i<t.length;i++){
-                if(t[i].id===id){
+            for (let i = 0; i < t.length; i++) {
+                if (t[i].id === id) {
                     t[i].status = newStatus;
                     break;
                 }
@@ -29,8 +28,8 @@ function Team(props) {
 
             setTasks(t);
 
-            for(let i=0;i<teams.length;i++){
-                if(teams[i].name===selectedTeamName){
+            for (let i = 0; i < teams.length; i++) {
+                if (teams[i].name === selectedTeamName) {
                     teams[i].tasks = t;
                     break;
                 }
@@ -41,7 +40,7 @@ function Team(props) {
             setNewStatus('');
 
             alert("Status changed successfully");
-        }else{
+        } else {
             alert("Empty field can't be submited! Please change status and try again");
         }
     }
@@ -60,20 +59,20 @@ function Team(props) {
                 <div className='col-4'>
                     <form className="d-flex py-4" role="search">
                         <input className="form-control me-2" type="search" placeholder="Filter by " aria-label="Search" />
-                        <button className="btn btn-outline-dark" type="submit">Filter</button>
+                        {/*<button className="btn btn-outline-dark" type="submit">Filter</button>*/}
                     </form>
                 </div>
                 <div className="col-4 mt-4">
                     < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
                         {
-                            teamNames.map((e, index) => <option key={index} value={index} style={{textAlign: "center"}}>{`Team Name : ${e}`}</option>)
+                            teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Team Name : ${e}`}</option>)
                         }
                     </select >
                 </div>
                 <div className='col-4'>
                     <form className="d-flex py-4" role="search">
                         <input className="form-control me-2" type="search" placeholder="Sort by " aria-label="Search" />
-                        <button className="btn btn-outline-dark" type="submit">Sort</button>
+                        {/*<button className="btn btn-outline-dark" type="submit">Sort</button>*/}
                     </form>
                 </div>
             </div>
@@ -82,7 +81,7 @@ function Team(props) {
 
                 </div>
                 <div className="col-4" style={{ textAlign: "center", fontSize: "20px", paddingBottom: "30px" }}>
-                <Link to="/create_task"><button type="submit" className="btn btn-outline-dark">Add A New Task</button></Link>
+                    <Link to="/create_task"><button type="submit" className="btn btn-outline-dark">Add A New Task</button></Link>
                 </div>
                 <div className='col-4'>
 

@@ -127,47 +127,50 @@ function App() {
   const create = (e) => {
     e.preventDefault();
 
-    let f = 0;
+    if (newTeam !== '') {
+      let f = 0;
 
-    for (let i = 0; i < teams.length; i++) {
-      if (teams[i].name === newTeam) {
-        f = 1;
-        break;
-      }
-    }
-
-    if (f === 0) {
-      let userTeams = [];
-      userTeams = users[userId - 1].teams;
-      userTeams = [...userTeams, newTeam];
-      users[userId - 1].teams = userTeams;
-
-
-      let id;
-      if (teams.length === 0) {
-        id = 0;
-      }
-      else {
-        id = teams[teams.length - 1].id;
+      for (let i = 0; i < teams.length; i++) {
+        if (teams[i].name === newTeam) {
+          f = 1;
+          break;
+        }
       }
 
-      const newTeamMember = {
-        id: id + 1,
-        name: newTeam,
-        tasks: []
+      if (f === 0) {
+        let userTeams = [];
+        userTeams = users[userId - 1].teams;
+        userTeams = [...userTeams, newTeam];
+        users[userId - 1].teams = userTeams;
+
+        let id;
+        if (teams.length === 0) {
+          id = 0;
+        }
+        else {
+          id = teams[teams.length - 1].id;
+        }
+
+        const newTeamMember = {
+          id: id + 1,
+          name: newTeam,
+          tasks: []
+        }
+
+        setTeams([...teams, newTeamMember]);
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+        localStorage.setItem("teams", JSON.stringify(teams));
+
+        setNewTeam('');
+
+        alert("New team successfully created");
+      } else {
+        alert("Team already exists!");
       }
-
-      setTeams([...teams, newTeamMember]);
-
-      localStorage.setItem("users", JSON.stringify(users));
-
-      localStorage.setItem("teams", JSON.stringify(teams));
-
-      setNewTeam('');
-
-      alert("New team successfully created");
     } else {
-      alert("Team already exists!");
+      alert("Empty field can't be submited!");
     }
   }
 

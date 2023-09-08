@@ -17,13 +17,13 @@ function Task(props) {
                     <p className="card-text">{props.desc}</p>
                 </div>
                 <div className='p-2 m-2'>
-                <p>Change task status</p>
+                    <p>Change task status</p>
                     < select onChange={e => handleAddrTypeChangeOfStatus(e)} className="form-select" aria-label="Default select example">
-                    {
-                        status.map((e, index) => <option key={index} value={index}>{e}{console.log(e)}</option>)
-                    }
-                </select >
-                <button type="submit" onClick={()=>props.editStatus(props.id)} className="btn btn-outline-light mt-2">Save</button>
+                        {
+                            status.map((e, index) => <option key={index} value={index}>{e}{console.log(e)}</option>)
+                        }
+                    </select >
+                    <button type="submit" onClick={() => props.editStatus(props.id)} className="btn btn-outline-light mt-2">Save</button>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ function My_Teams(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.teams.length === 0? "No data to show" : props.teams.map((team, index) => {
+                            {props.teams.length === 0 ? "No data to show" : props.teams.map((team, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>{team}</td>
