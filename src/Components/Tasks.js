@@ -13,45 +13,47 @@ function Team(props) {
         console.log(selectedTeamName);
     }
 
-    //to edit status
-    const [newStatus, setNewStatus] = useState('')
-
-    const editStatus = (id) => {
-        if (newStatus !== '') {
-            let t = tasks;
-            for (let i = 0; i < t.length; i++) {
-                if (t[i].id === id) {
-                    t[i].status = newStatus;
-                    break;
-                }
-            }
-
-            setTasks(t);
-
-            for (let i = 0; i < teams.length; i++) {
-                if (teams[i].name === selectedTeamName) {
-                    teams[i].tasks = t;
-                    break;
-                }
-            }
-
-            localStorage.setItem("teams", JSON.stringify(teams));
-
-            setNewStatus('');
-
-            alert("Status changed successfully");
-        } else {
-            alert("Empty field can't be submited! Please change status and try again");
-        }
-    }
-
-    useEffect(() => {
+    const getTasks = () => {
         for (let i = 0; i < teams?.length; i++) {
             if (teams[i].name === selectedTeamName) {
                 setTasks(teams[i].tasks);
             }
         }
-    })
+    }
+
+    //to edit status
+    const [newStatus, setNewStatus] = useState("Pending")
+
+    const editStatus = (id) => {
+        console.log(newStatus);
+
+        let t = tasks;
+        for (let i = 0; i < t.length; i++) {
+            if (t[i].id === id) {
+                t[i].status = newStatus;
+                break;
+            }
+        }
+
+        setTasks(t);
+
+        for (let i = 0; i < teams.length; i++) {
+            if (teams[i].name === selectedTeamName) {
+                teams[i].tasks = t;
+                break;
+            }
+        }
+
+        localStorage.setItem("teams", JSON.stringify(teams));
+
+        getTasks();
+
+        alert(`Status marked as ${newStatus}`);
+    }
+
+    useEffect(() => {
+        getTasks();
+    },[selectedTeamName])
 
     return (
         <div className='container' style={{ marginTop: '5%' }}>
@@ -64,9 +66,9 @@ function Team(props) {
                 </div>
                 <div className="col-4 mt-4">
                     < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
-                        {
-                            teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Team Name : ${e}`}</option>)
-                        }
+                        {teamNames.map((e, index) => {
+                            return <option key={index} value={index} style={{ textAlign: "center" }}>Team Name : {e}</option>
+                        })}
                     </select >
                 </div>
                 <div className='col-4'>
@@ -89,7 +91,7 @@ function Team(props) {
             </div>
             <div className="row mb-4">
                 {tasks.length === 0 ? "No data to show" : tasks.map((task) => {
-                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} priority={task.priority} status={task.status} setNewStatus={setNewStatus} editStatus={editStatus} />
+                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} priority={task.priority} status={task.status} newStatus={newStatus} setNewStatus={setNewStatus} editStatus={editStatus} />
                 })}
             </div>
         </div>

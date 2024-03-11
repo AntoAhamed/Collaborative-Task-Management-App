@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Create_Task(props) {
-    const priorities = ["low", "medium", "high"];
+    const priorities = ["Low", "Medium", "High"];
     const handleAddrTypeChangeOfPriority = (e) => {
         const selectedPriority = priorities[e.target.value];
         props.setPrio(selectedPriority);
@@ -15,6 +15,12 @@ function Create_Task(props) {
         props.setTea(selectedTeamName)
         console.log(selectedTeamName);
     }
+
+    useEffect(() => {
+        props.setPrio(priorities[0]);
+        props.setTea(teamNames[0]);
+    }, [])
+
 
     return (
         <div className='container' style={{ marginTop: '5%' }}>

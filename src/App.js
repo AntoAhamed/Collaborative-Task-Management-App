@@ -116,11 +116,6 @@ function App() {
     }
   }
 
-  //logout
-  const logout = () => {
-    setUserId('')
-  }
-
   //new team
   const [newTeam, setNewTeam] = useState('')
 
@@ -308,6 +303,8 @@ function App() {
   const addTask = (e) => {
     e.preventDefault();
 
+    console.log(title, desc, due, prio, tea)
+
     if (title !== '' && desc !== '' && due !== '' && prio !== '' && tea !== '') {
       for (let i = 0; i < teams.length; i++) {
         if (teams[i].name === tea) {
@@ -325,7 +322,7 @@ function App() {
             desc: desc,
             date: due,
             priority: prio,
-            status: "pending"
+            status: "Pending"
           }
 
           tasks = [...tasks, newTask]
@@ -333,8 +330,6 @@ function App() {
           setTitle('')
           setDesc('')
           setDue('')
-          setPrio('')
-          setTea('')
 
           localStorage.setItem("teams", JSON.stringify(teams));
 
@@ -353,8 +348,8 @@ function App() {
     setTitle('')
     setDesc('')
     setDue('')
-    setPrio('')
-    setTea('')
+
+    alert("Reseted")
   }
 
   useEffect(() => {
@@ -369,7 +364,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar userId={userId} setUserId={setUserId} logout={logout} />}>
+          <Route path="/" element={<Navbar userId={userId} setUserId={setUserId} />}>
             <Route index element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="signup" element={<Signup newName={newName} setNewName={setNewName} newEmail={newEmail} setNewEmail={setNewEmail} newPassword={newPassword} setNewPassword={setNewPassword} newBio={newBio} setNewBio={setNewBio} signup={signup} />} />
             <Route path="profile" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
@@ -377,7 +372,7 @@ function App() {
             <Route path="my_teams" element={userId ? <MyTeams teams={users[userId - 1]?.teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="create_task" element={userId ? <CreateTask title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} due={due} setDue={setDue} prio={prio} setPrio={setPrio} tea={tea} setTea={setTea} teamNames={users[userId - 1]?.teams} teams={teams} addTask={addTask} resetTask={resetTask} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="invitation" element={userId ? <Invitation teamNames={users[userId - 1]?.teams} users={users} teams={teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
+            <Route path="invitation" element={userId ? <Invitation teamNames={users[userId - 1]?.teams} users={users} setUsers={setUsers} teams={teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -30,16 +30,23 @@ function Invitation(props) {
 
     //invite and join
     const invite = (e) => {
+        console.log(e)
         let t = e.teams;
         t = [...t, selectedTeamName];
+        console.log(t);
         e.teams = t;
 
         for (let i = 0; i < props.users?.length; i++) {
             if (props.users[i].id === e.id) {
                 props.users[i].teams = t;
+                console.log(props.users[i].teams)
                 break;
             }
         }
+
+        props.setUsers(props.users);
+
+        localStorage.setItem("users",JSON.stringify(props.users));
 
         let tt = [];
         for (let i = 0; i < tmp.length; i++) {
@@ -64,11 +71,13 @@ function Invitation(props) {
 
                 </div>
                 <div className="col-4 mt-4">
-                    < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
-                        {
-                            teamNames.length === 0 ? "No data to show" : teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Invite Members To Team ${e}`}</option>)
-                        }
-                    </select >
+                    {teamNames.length === 0 ? "No team to show" :
+                        < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
+                            {
+                                teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Invite Members To Team ${e}`}</option>)
+                            }
+                        </select >
+                    }
                 </div>
                 <div className='col-4'>
 
