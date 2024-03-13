@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react'
 function Task(props) {
     const status = ["Pending", "In Progress", "Completed"];
     const [selectedStatus, setSelectedStatus] = useState(status[0]);
-    //props.setNewStatus(status[0]);
     const handleAddrTypeChangeOfStatus = (e) => {
         const selectedStatus = status[e.target.value];
         setSelectedStatus(selectedStatus);
-        props.setNewStatus(selectedStatus);
+        //props.setNewStatus(selectedStatus);
         console.log(selectedStatus);
     }
 
@@ -30,7 +29,7 @@ function Task(props) {
                         return <option key={index} value={index}>{e}</option>
                         })}
                     </select >
-                    <button type="submit" onClick={() => props.editStatus(props.id)} className="btn btn-outline-light mt-2">Save</button>
+                    <button type="submit" onClick={() => props.editStatus(props.id, selectedStatus)} className="btn btn-outline-light mt-2">Save</button>
                 </div>
             </div>
         </div>

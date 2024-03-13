@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 function Team(props) {
     const [tasks, setTasks] = useState([])
-    const teamNames = props.teamNames?.map(teamName => teamName)
-    const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0])
+    const teamNames = props.teamNames?.map(teamName => teamName) //status
+    const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0]) // selected status
     const teams = props.teams?.map(team => team)
     const handleAddrTypeChange = (e) => {
         const selectedTeamName = teamNames[e.target.value];
@@ -22,9 +22,9 @@ function Team(props) {
     }
 
     //to edit status
-    const [newStatus, setNewStatus] = useState("Pending")
+    //const [newStatus, setNewStatus] = useState('')
 
-    const editStatus = (id) => {
+    const editStatus = (id, newStatus) => {
         console.log(newStatus);
 
         let t = tasks;
@@ -46,6 +46,8 @@ function Team(props) {
 
         localStorage.setItem("teams", JSON.stringify(teams));
 
+        props.setTeams(JSON.parse(localStorage.getItem("teams")));
+
         getTasks();
 
         alert(`Status marked as ${newStatus}`);
@@ -53,7 +55,7 @@ function Team(props) {
 
     useEffect(() => {
         getTasks();
-    },[selectedTeamName])
+    }, [selectedTeamName])
 
     return (
         <div className='container' style={{ marginTop: '5%' }}>
@@ -65,11 +67,15 @@ function Team(props) {
                     </form>
                 </div>
                 <div className="col-4 mt-4">
-                    < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
-                        {teamNames.map((e, index) => {
-                            return <option key={index} value={index} style={{ textAlign: "center" }}>Team Name : {e}</option>
-                        })}
-                    </select >
+                    {teamNames.length === 0 ?
+                        < select className="form-select" aria-label="Default select example">
+                            <option style={{ textAlign: "center" }}>No teams to show</option>
+                        </select > :
+                        < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
+                            {teamNames.map((e, index) => {
+                                return <option key={index} value={index} style={{ textAlign: "center" }}>Team Name : {e}</option>
+                            })}
+                        </select >}
                 </div>
                 <div className='col-4'>
                     <form className="d-flex py-4" role="search">
@@ -83,7 +89,10 @@ function Team(props) {
 
                 </div>
                 <div className="col-4" style={{ textAlign: "center", fontSize: "20px", paddingBottom: "30px" }}>
-                    <Link to="/create_task"><button type="submit" className="btn btn-outline-dark">Add A New Task</button></Link>
+                    {teamNames.length === 0 ?
+                        <button type="button" onClick={()=>alert("You have to create a team first to assign a task.")} className="btn btn-outline-dark">Add A New Task</button> :
+                        <Link to="/create_task"><button type="submit" className="btn btn-outline-dark">Add A New Task</button></Link>
+                    }
                 </div>
                 <div className='col-4'>
 
@@ -91,7 +100,7 @@ function Team(props) {
             </div>
             <div className="row mb-4">
                 {tasks.length === 0 ? "No data to show" : tasks.map((task) => {
-                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} priority={task.priority} status={task.status} newStatus={newStatus} setNewStatus={setNewStatus} editStatus={editStatus} />
+                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} priority={task.priority} status={task.status} editStatus={editStatus} />
                 })}
             </div>
         </div>

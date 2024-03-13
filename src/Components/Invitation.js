@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Invitation(props) {
+    const [usersToInvite, setUsersToInvite] = useState([])
     const teamNames = props.teamNames?.map(teamName => teamName)
     const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0])
     const handleAddrTypeChange = (e) => {
@@ -10,8 +11,9 @@ function Invitation(props) {
     }
 
     //finding members to invite
-    if (teamNames) {
-        var tmp = [];
+    const find = () => {
+        //var tmp = [];
+        let tmp = [];
         const users = props.users;
         for (let i = 0; i < users.length; i++) {
             let f = 0;
@@ -26,6 +28,7 @@ function Invitation(props) {
                 tmp.push(users[i]);
             }
         }
+        setUsersToInvite(tmp);
     }
 
     //invite and join
@@ -46,59 +49,70 @@ function Invitation(props) {
 
         props.setUsers(props.users);
 
-        localStorage.setItem("users",JSON.stringify(props.users));
+        localStorage.setItem("users", JSON.stringify(props.users));
 
-        let tt = [];
-        for (let i = 0; i < tmp.length; i++) {
-            if (tmp[i].id === e.id) {
+        find();
+
+        /*let tt = [];
+        for (let i = 0; i < usersToInvite.length; i++) {
+            if (usersToInvite[i].id === e.id) {
                 continue;
             } else {
-                tt.push(tmp[i]);
+                tt.push(usersToInvite[i]);
             }
         }
 
-        tmp = tt;
+        tmp = tt;*/
 
         alert(`${e.name} is invited and joined in the team ${selectedTeamName}`)
     }
 
-    console.log(tmp)
+    //console.log(tmp)
+
+    useEffect(()=>{
+        find();
+    },[selectedTeamName])
 
     return (
         <div className='container' style={{ marginTop: '5%' }}>
-            <div className="row mb-3">
-                <div className='col-4'>
+            {teamNames.length === 0 ? "No data to show" :
+                <>
+                    <div className="row mb-3">
+                        <div className='col-4'>
 
-                </div>
-                <div className="col-4 mt-4">
-                    {teamNames.length === 0 ? "No team to show" :
-                        < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
-                            {
-                                teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Invite Members To Team ${e}`}</option>)
-                            }
-                        </select >
-                    }
-                </div>
-                <div className='col-4'>
-
-                </div>
-            </div>
-            <div className="row mb-3">
-                {tmp.length === 0 ? "No data to show" : tmp.map((e) => {
-                    return (
-                        <div className='col-12 mb-4' key={e.id}>
-                            <div className="card">
-                                <div className="card-body">
-                                    <blockquote className="blockquote mb-0">
-                                        <p>{e.name}</p>
-                                        <footer className="blockquote-footer">{e.email}<button type="button" onClick={() => invite(e)} className="btn btn-sm btn-dark mx-2">Invite</button></footer>
-                                    </blockquote>
-                                </div>
-                            </div>
                         </div>
-                    )
-                })}
-            </div>
+                        <div className="col-4 mt-4">
+                            < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
+                                {
+                                    teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Invite Members To Team ${e}`}</option>)
+                                }
+                            </select >
+                        </div>
+                        <div className='col-4'>
+
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        {usersToInvite.length === 0 ? "No data to show" : usersToInvite.map((e) => {
+                            return (
+                                <div className='col-12 mb-4' key={e.id}>
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <blockquote className="blockquote mb-0">
+                                                <p>{e.name}</p>
+                                                <div className="d-flex justify-content-between">
+                                                    <footer className="blockquote-footer">{e.email}</footer>
+                                                    <button type="button" onClick={() => invite(e)} className="btn btn-sm btn-dark mx-2">Invite & Join</button>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </>
+            }
         </div>
     )
 }
