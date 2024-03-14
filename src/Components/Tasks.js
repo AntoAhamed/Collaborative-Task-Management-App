@@ -63,7 +63,7 @@ function Team(props) {
     }, [selectedTeamName])
 
     return (
-        <div className='container' style={{ marginTop: '5%' }}>
+        <div className='container' style={{ marginTop: '7%' }}>
             <div className="row mb-3">
                 <div className='col-4'>
                     <form className="d-flex py-4" role="search">

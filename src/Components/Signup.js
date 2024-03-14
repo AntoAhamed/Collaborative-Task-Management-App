@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 function Signup(props) {
     return (
-        <div className='container' style={{ marginTop: '5%' }}>
+        <div className='container d-flex flex-column align-items-center' style={{ marginTop: '9%', marginBottom: '5%', border: "0.5px solid wheat", width: "50%", padding: "3%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
             <div className="col" style={{ textAlign: "center", fontSize: "45px", paddingBottom: "30px" }}>
                 <b>Signup Here</b>
             </div>
             <div className='row'>
                 <div className='col'>
-                    <form action='' method='' className='signup-form'>
+                    <form action='' method='' className=''>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Name</label>
                             <input type="text" className="form-control" value={props.newName} onChange={(e) => { props.setNewName(e.target.value) }} id="name" placeholder="Enter your name" />

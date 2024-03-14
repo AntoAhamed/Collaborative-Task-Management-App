@@ -2,7 +2,7 @@ import React from 'react'
 
 function Create_Team(props) {
     return (
-        <div className='container mb-4' style={{ paddingLeft: "25%", paddingRight: "25%", marginTop: "5%" }}>
+        <div className='container mb-4' style={{ paddingLeft: "25%", paddingRight: "25%", marginTop: "7%" }}>
             <div className="row">
                 <div className="col" style={{ textAlign: "center", fontSize: "45px" }}>
                     <b>Create A New Team</b>

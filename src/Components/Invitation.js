@@ -74,7 +74,7 @@ function Invitation(props) {
     },[selectedTeamName])
 
     return (
-        <div className='container' style={{ marginTop: '5%' }}>
+        <div className='container' style={{ marginTop: '7%' }}>
             {teamNames.length === 0 ? "No data to show" :
                 <>
                     <div className="row mb-3">

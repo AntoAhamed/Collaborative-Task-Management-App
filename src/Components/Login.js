@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Login(props) {
     return (
-        <div className='container' style={{ marginTop: '5%' }}>
+        <div className='container d-flex flex-column align-items-center' style={{ marginTop: '10%', marginBottom: '5%', border: "0.5px solid wheat", width: "30%", padding: "3%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
             <div className="row mb-3">
                 <div className="col" style={{ textAlign: "center", fontSize: "45px", paddingBottom: "30px" }}>
                     <b>Login Here</b>
@@ -11,7 +11,7 @@ function Login(props) {
             </div>
             <div className='row'>
                 <div className='col'>
-                    <form action='' method='' className='login-form'>
+                    <form action='' method='' className=''>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email address</label>
                             <input type="email" className="form-control" value={props.email} onChange={(e) => { props.setEmail(e.target.value) }} id="email" placeholder="Enter your email address" />

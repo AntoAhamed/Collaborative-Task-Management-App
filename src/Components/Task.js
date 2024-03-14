@@ -10,29 +10,31 @@ function Task(props) {
         console.log(selectedStatus);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[])
+    }, [])
 
     return (
         <div className="col-sm-6 mb-3 mb-sm-0 my-4">
-            <div className="card text-bg-primary mb-3" style={{ maxWidth: "40rem" }}>
-                <div className="card-header">Creator: {props.users[props.creator-1].name}({props.users[props.creator-1].email}) | CurrentDate: {props.currentDate} | DueDate: {props.date} | Priority: {props.priority} | Status: {props.status.status} | StatusBy: {props.users[props.status.statusBy-1].name} | StatusOn: {props.status.statusOn}</div>
-                <div className="card-body">
-                    <h5 className="card-title">{props.title}</h5>
-                    <p className="card-text">{props.desc}</p>
+            <div class="card text-bg-primary mb-3" style={{ maxWidth: "40rem" }}>
+                <div class="card-header bg-transparent border-tarnary text-center">Created By {props.users[props.creator - 1].name}({props.users[props.creator - 1].email}) On {props.currentDate} | Priority: {props.priority} | Status: {props.status.status}</div>
+                <div class="card-body">
+                    <h4 class="card-title">{props.title}</h4>
+                    <p class="card-text">{props.desc}</p>
                 </div>
                 <div className='p-2 m-2'>
-                    <p>Change task status</p>
+                    <p>Change Task Status</p>
                     < select onChange={(e) => { handleAddrTypeChangeOfStatus(e) }} className="form-select" aria-label="Default select example">
                         {status.map((e, index) => {
-                        return <option key={index} value={index}>{e}</option>
+                            return <option key={index} value={index}>{e}</option>
                         })}
                     </select >
                     <button type="submit" onClick={() => props.editStatus(props.id, selectedStatus)} className="btn btn-outline-light mt-2">Save</button>
                 </div>
+                <div class="card-footer bg-transparent border-tarnary text-center">StatusBy: {props.users[props.status.statusBy - 1].name} | StatusOn: {props.status.statusOn} | DueDate: {props.date}</div>
             </div>
         </div>
+
     )
 }
 

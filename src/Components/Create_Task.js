@@ -23,7 +23,7 @@ function Create_Task(props) {
 
 
     return (
-        <div className='container mb-4' style={{ paddingLeft: "25%", paddingRight: "25%", marginTop: "5%" }}>
+        <div className='container mb-4' style={{ paddingLeft: "25%", paddingRight: "25%", marginTop: "7%" }}>
             <div className="row mb-3">
                 <div className="col" style={{ textAlign: "center", fontSize: "45px", paddingBottom: "30px" }}>
                     <b>Add Task</b>
