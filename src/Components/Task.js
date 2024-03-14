@@ -17,7 +17,7 @@ function Task(props) {
     return (
         <div className="col-sm-6 mb-3 mb-sm-0 my-4">
             <div className="card text-bg-primary mb-3" style={{ maxWidth: "40rem" }}>
-                <div className="card-header">DueDate: {props.date} | Priority: {props.priority} | Status: {props.status}</div>
+                <div className="card-header">Creator: {props.users[props.creator-1].name}({props.users[props.creator-1].email}) | CurrentDate: {props.currentDate} | DueDate: {props.date} | Priority: {props.priority} | Status: {props.status.status} | StatusBy: {props.users[props.status.statusBy-1].name} | StatusOn: {props.status.statusOn}</div>
                 <div className="card-body">
                     <h5 className="card-title">{props.title}</h5>
                     <p className="card-text">{props.desc}</p>

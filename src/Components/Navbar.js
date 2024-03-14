@@ -22,13 +22,10 @@ function Navbar(props) {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <Link className="nav-link" aria-current="page" to="/profile">Profile</Link>
+                                    <Link className="nav-link" aria-current="page" to="/profile">{props.users[props.userId-1].name}</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" aria-current="page" to="/create_team">Create Team</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/my_teams">Teams</Link>
+                                    <Link className="nav-link" aria-current="page" to="/teams">Teams</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/tasks">Tasks</Link>

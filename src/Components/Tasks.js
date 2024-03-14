@@ -7,6 +7,7 @@ function Team(props) {
     const teamNames = props.teamNames?.map(teamName => teamName) //status
     const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0]) // selected status
     const teams = props.teams?.map(team => team)
+    const users = props.users?.map(user => user)
     const handleAddrTypeChange = (e) => {
         const selectedTeamName = teamNames[e.target.value];
         setSelectedTeamName(selectedTeamName);
@@ -27,10 +28,14 @@ function Team(props) {
     const editStatus = (id, newStatus) => {
         console.log(newStatus);
 
+        const now = new Date();
+
         let t = tasks;
         for (let i = 0; i < t.length; i++) {
             if (t[i].id === id) {
-                t[i].status = newStatus;
+                t[i].status.status = newStatus;
+                t[i].status.statusBy = props.userId;
+                t[i].status.statusOn = now.toLocaleDateString();
                 break;
             }
         }
@@ -100,7 +105,7 @@ function Team(props) {
             </div>
             <div className="row mb-4">
                 {tasks.length === 0 ? "No data to show" : tasks.map((task) => {
-                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} priority={task.priority} status={task.status} editStatus={editStatus} />
+                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} currentDate={task.currentDate} priority={task.priority} status={task.status} creator={task.creator} users={users} editStatus={editStatus} />
                 })}
             </div>
         </div>

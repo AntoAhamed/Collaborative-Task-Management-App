@@ -4,8 +4,7 @@ import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Profile from './Components/Profile';
-import CreateTeam from './Components/Create_Team';
-import MyTeams from './Components/My_Teams';
+import Teams from './Components/Teams';
 import Tasks from './Components/Tasks';
 import CreateTask from './Components/Create_Task';
 import Invitation from './Components/Invitation';
@@ -41,7 +40,7 @@ function App() {
       let f = 0;
 
       for (let i = 0; i < users.length; i++) {
-        if (users[i].email === email) {
+        if (users[i].email === newEmail) {
           f = 1;
           break;
         }
@@ -67,7 +66,7 @@ function App() {
 
         setUsers([...users, newUser])
         setNewName('')
-        setEmail('')
+        setNewEmail('')
         setNewPassword('')
         setNewBio('')
 
@@ -303,6 +302,8 @@ function App() {
   const addTask = (e) => {
     e.preventDefault();
 
+    const now = new Date();
+
     console.log(title, desc, due, prio, tea)
 
     if (title !== '' && desc !== '' && due !== '' && prio !== '' && tea !== '') {
@@ -321,8 +322,14 @@ function App() {
             title: title,
             desc: desc,
             date: due,
+            currentDate: now.toLocaleDateString(),
             priority: prio,
-            status: "Pending"
+            status: {
+              status: "Pending",
+              statusBy: userId,
+              statusOn: now.toLocaleDateString()
+            },
+            creator: userId
           }
 
           tasks = [...tasks, newTask]
@@ -364,13 +371,12 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar userId={userId} setUserId={setUserId} />}>
+          <Route path="/" element={<Navbar userId={userId} setUserId={setUserId} users={users} />}>
             <Route index element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="signup" element={<Signup newName={newName} setNewName={setNewName} newEmail={newEmail} setNewEmail={setNewEmail} newPassword={newPassword} setNewPassword={setNewPassword} newBio={newBio} setNewBio={setNewBio} signup={signup} />} />
             <Route path="profile" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="create_team" element={userId ? <CreateTeam newTeam={newTeam} setNewTeam={setNewTeam} create={create} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="my_teams" element={userId ? <MyTeams teams={users[userId - 1]?.teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} setTeams={setTeams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
+            <Route path="teams" element={userId ? <Teams newTeam={newTeam} setNewTeam={setNewTeam} create={create} teams={users[userId - 1]?.teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
+            <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} setTeams={setTeams} users={users} setUsers={setUsers} userId={userId} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="create_task" element={userId ? <CreateTask title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} due={due} setDue={setDue} prio={prio} setPrio={setPrio} tea={tea} setTea={setTea} teamNames={users[userId - 1]?.teams} teams={teams} addTask={addTask} resetTask={resetTask} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="invitation" element={userId ? <Invitation teamNames={users[userId - 1]?.teams} users={users} setUsers={setUsers} teams={teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
           </Route>

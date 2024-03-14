@@ -2,18 +2,3 @@ body {
   background-color: #6699ff;
 }
 
-.App .login-form,
-.App .signup-form,
-.App .profile,
-.App .team-creation-form {
-  padding: 5% 35% 5% 35%;
-}
-
-.App .login-para,
-.App .signup-para {
-  text-align: center;
-}
-
-.App .add-task {
-  padding: 1% 20% 1% 20%;
-}
