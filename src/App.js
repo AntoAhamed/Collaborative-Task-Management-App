@@ -27,6 +27,13 @@ function App() {
     initTeams = JSON.parse(localStorage.getItem("teams"));
   }
 
+  let initUserId;
+  if(localStorage.getItem("userId")===null){
+    initUserId = '';
+  }else{
+    initUserId = JSON.parse(localStorage.getItem("userId"));
+  }
+
   //for signup
   const [newName, setNewName] = useState('')
   const [newEmail, setNewEmail] = useState('')
@@ -82,7 +89,7 @@ function App() {
   }
 
   //user
-  const [userId, setUserId] = useState('')
+  const [userId, setUserId] = useState(initUserId)
 
   //for login
   const [email, setEmail] = useState('')
@@ -366,6 +373,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem("teams", JSON.stringify(teams));
   }, [teams])
+
+  useEffect(() => {
+    localStorage.setItem("userId", JSON.stringify(userId));
+  },[userId])
 
   return (
     <div className='App'>

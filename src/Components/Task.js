@@ -24,12 +24,12 @@ function Task(props) {
                 </div>
                 <div className='p-2 m-2'>
                     <p>Change Task Status</p>
-                    < select onChange={(e) => { handleAddrTypeChangeOfStatus(e) }} className="form-select" aria-label="Default select example">
+                    < select onChange={(e) => { handleAddrTypeChangeOfStatus(e) }} className="form-select form-select-lg" aria-label="Default select example">
                         {status.map((e, index) => {
                             return <option key={index} value={index}>{e}</option>
                         })}
                     </select >
-                    <button type="submit" onClick={() => props.editStatus(props.id, selectedStatus)} className="btn btn-outline-light mt-2">Save</button>
+                    <button type="submit" onClick={() => props.editStatus(props.id, selectedStatus)} className="btn btn-lg btn-outline-light mt-2">Save</button>
                 </div>
                 <div class="card-footer bg-transparent border-tarnary text-center">StatusBy: {props.users[props.status.statusBy - 1].name} | StatusOn: {props.status.statusOn} | DueDate: {props.date}</div>
             </div>

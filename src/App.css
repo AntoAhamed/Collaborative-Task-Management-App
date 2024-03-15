@@ -1,5 +1,11 @@
 body {
-  background-color: #b69cee;
-  /*color: #96b8fb;*/
+  background-color: rgb(198, 206, 250);
+  letter-spacing: 0.5px;
+  color: black;
 }
 
+.App .navbar .nav-item {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0.7rem;
+}

@@ -67,16 +67,16 @@ function Team(props) {
             <div className="row mb-3">
                 <div className='col-4'>
                     <form className="d-flex py-4" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Filter by " aria-label="Search" />
+                        <input className="form-control form-control-lg me-2" type="search" placeholder="Filter by " aria-label="Search" />
                         {/*<button className="btn btn-outline-dark" type="submit">Filter</button>*/}
                     </form>
                 </div>
                 <div className="col-4 mt-4">
                     {teamNames.length === 0 ?
-                        < select className="form-select" aria-label="Default select example">
+                        < select className="form-select form-select-lg mb-3" aria-label="Default select example">
                             <option style={{ textAlign: "center" }}>No teams to show</option>
                         </select > :
-                        < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
+                        < select onChange={e => handleAddrTypeChange(e)} className="form-select form-select-lg mb-3" aria-label="Default select example">
                             {teamNames.map((e, index) => {
                                 return <option key={index} value={index} style={{ textAlign: "center" }}>Team Name : {e}</option>
                             })}
@@ -84,7 +84,7 @@ function Team(props) {
                 </div>
                 <div className='col-4'>
                     <form className="d-flex py-4" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Sort by " aria-label="Search" />
+                        <input className="form-control form-control-lg me-2" type="search" placeholder="Sort by " aria-label="Search" />
                         {/*<button className="btn btn-outline-dark" type="submit">Sort</button>*/}
                     </form>
                 </div>
@@ -96,7 +96,7 @@ function Team(props) {
                 <div className="col-4" style={{ textAlign: "center", fontSize: "20px", paddingBottom: "30px" }}>
                     {teamNames.length === 0 ?
                         <button type="button" onClick={()=>alert("You have to create a team first to assign a task.")} className="btn btn-outline-dark">Add A New Task</button> :
-                        <Link to="/create_task"><button type="submit" className="btn btn-outline-dark">Add A New Task</button></Link>
+                        <Link to="/create_task"><button type="submit" className="btn btn-success">Add A New Task</button></Link>
                     }
                 </div>
                 <div className='col-4'>

@@ -23,30 +23,30 @@ function Create_Task(props) {
 
 
     return (
-        <div className='container mb-4' style={{ paddingLeft: "25%", paddingRight: "25%", marginTop: "7%" }}>
-            <div className="row mb-3">
-                <div className="col" style={{ textAlign: "center", fontSize: "45px", paddingBottom: "30px" }}>
+        <div className='container mb-4' style={{ marginTop: '9%', marginBottom: '5%', width: "50%", padding: "3% 10%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
+            <div className="row mb-2">
+                <div className="col" style={{ textAlign: "center", fontSize: "45px" }}>
                     <b>Add Task</b>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row mb-2'>
                 <div className='col'>
-                    <form action='' method='' className='add-task'>
+                    <form action='' method='' className=''>
                         <div className="mb-3">
                             <label htmlFor="title" className="form-label">Title</label>
-                            <input type="text" className="form-control" value={props.title} onChange={(e) => { props.setTitle(e.target.value) }} id="title" placeholder="Enter title" />
+                            <input type="text" className="form-control form-control-lg" value={props.title} onChange={(e) => { props.setTitle(e.target.value) }} id="title" placeholder="Enter title" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="description" className="form-label">Description</label>
-                            <textarea className="form-control" value={props.desc} onChange={(e) => { props.setDesc(e.target.value) }} id="description" rows="5" placeholder="Enter description" ></textarea>
+                            <textarea className="form-control form-control-lg" value={props.desc} onChange={(e) => { props.setDesc(e.target.value) }} id="description" rows="5" placeholder="Enter description" ></textarea>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="due" className="form-label">Due Date</label>
-                            <input type="date" className="form-control" value={props.due} onChange={(e) => { props.setDue(e.target.value) }} id="due" />
+                            <input type="date" className="form-control form-control-lg" value={props.due} onChange={(e) => { props.setDue(e.target.value) }} id="due" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="priority" className="form-label">Priority Level</label>
-                            < select onChange={e => handleAddrTypeChangeOfPriority(e)} className="form-select" id="priority" aria-label="Default select example">
+                            < select onChange={e => handleAddrTypeChangeOfPriority(e)} className="form-select form-select-lg" id="priority" aria-label="Default select example">
                                 {
                                     priorities.map((e, index) => <option key={index} value={index}>{e}{console.log(e)}</option>)
                                 }
@@ -54,14 +54,14 @@ function Create_Task(props) {
                         </div>
                         <div className='mb-3'>
                             <label htmlFor="team" className="form-label">Team</label>
-                            < select onChange={e => handleAddrTypeChange(e)} className="form-select" id="team" aria-label="Default select example">
+                            < select onChange={e => handleAddrTypeChange(e)} className="form-select form-select-lg" id="team" aria-label="Default select example">
                                 {
                                     teamNames.map((e, index) => <option key={index} value={index}>{e}{console.log(e)}</option>)
                                 }
                             </select >
                         </div>
-                        <button type="submit" onClick={props.addTask} className="btn btn-outline-dark">Add</button>
-                        <button type="reset" onClick={props.resetTask} className="btn btn-outline-dark mx-2">Reset</button>
+                        <button type="submit" onClick={props.addTask} className="btn btn-primary btn-lg">Add</button>
+                        <button type="reset" onClick={props.resetTask} className="btn btn-outline-primary btn-lg mx-2">Reset</button>
                     </form>
                 </div>
             </div>

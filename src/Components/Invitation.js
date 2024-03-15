@@ -82,9 +82,9 @@ function Invitation(props) {
 
                         </div>
                         <div className="col-4 mt-4">
-                            < select onChange={e => handleAddrTypeChange(e)} className="form-select" aria-label="Default select example">
+                            < select onChange={e => handleAddrTypeChange(e)} className="form-select form-select-lg mb-3" aria-label="Default select example">
                                 {
-                                    teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>{`Invite Members To Team ${e}`}</option>)
+                                    teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>Invite Members To Team: {e}</option>)
                                 }
                             </select >
                         </div>
@@ -96,13 +96,13 @@ function Invitation(props) {
                         {usersToInvite.length === 0 ? "No data to show" : usersToInvite.map((e) => {
                             return (
                                 <div className='col-12 mb-4' key={e.id}>
-                                    <div className="card">
+                                    <div className="card p-4" style={{border: 'none'}}>
                                         <div className="card-body">
                                             <blockquote className="blockquote mb-0">
                                                 <p>{e.name}</p>
                                                 <div className="d-flex justify-content-between">
                                                     <footer className="blockquote-footer">{e.email}</footer>
-                                                    <button type="button" onClick={() => invite(e)} className="btn btn-sm btn-dark mx-2">Invite & Join</button>
+                                                    <button type="button" onClick={() => invite(e)} className="btn btn-dark mx-2">Invite & Join</button>
                                                 </div>
                                             </blockquote>
                                         </div>
