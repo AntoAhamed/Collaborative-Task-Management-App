@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet, Link, useNavigate } from "react-router-dom";
+import Alert from './Alert';
 
 function Navbar(props) {
     const navigate = useNavigate()
@@ -22,21 +23,21 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse mx-4" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to="">Home</Link>
+                                <Link className="nav-link" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to="">About</Link>
+                                <Link className="nav-link" aria-current="page" to="/about">About</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to="">Contact</Link>
+                                <Link className="nav-link" aria-current="page" to="/contact">Contact</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to="">Features</Link>
+                                <Link className="nav-link" aria-current="page" to="/features">Features</Link>
                             </li>
                             {!props.userId ?
                                 <>
                                     <li className="nav-item">
-                                        <Link className="nav-link" aria-current="page" to="/">Login</Link>
+                                        <Link className="nav-link" aria-current="page" to="/login">Login</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" aria-current="page" to="/signup">Signup</Link>
@@ -46,7 +47,7 @@ function Navbar(props) {
                             {props.userId ?
                                 <>
                                     <li className="nav-item">
-                                        <Link className="nav-link" aria-current="page" to="/profile">{props.users[props.userId - 1].name}</Link>
+                                        <Link className="nav-link" aria-current="page" to="/profile">{/*props.users[props.userId - 1].name*/}Profile</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" aria-current="page" to="/teams">Teams</Link>
@@ -59,9 +60,13 @@ function Navbar(props) {
                                     </li>
                                 </> : ''
                             }
+                            {props.alert === true ?
+                                <li className='mx-4'>
+                                    <Alert alertMssg={props.alertMssg} />
+                                </li> : ''}
                         </ul>
                         {props.userId ?
-                            <button onClick={() => { logout() }} className="btn btn-outline-light d-flex">Logout</button> : ''}
+                            <button onClick={() => { logout() }} className="btn btn-dark text-light d-flex">Logout</button> : ''}
                     </div>
                 </div>
             </nav>

@@ -69,40 +69,34 @@ function Invitation(props) {
 
     //console.log(tmp)
 
-    useEffect(()=>{
+    useEffect(() => {
         find();
-    },[selectedTeamName])
+    }, [selectedTeamName])
 
     return (
         <div className='container' style={{ marginTop: '7%' }}>
             {teamNames.length === 0 ? "No data to show" :
                 <>
                     <div className="row mb-3">
-                        <div className='col-4'>
-
-                        </div>
-                        <div className="col-4 mt-4">
+                        <div className="col mt-4">
                             < select onChange={e => handleAddrTypeChange(e)} className="form-select form-select-lg mb-3" aria-label="Default select example">
                                 {
                                     teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>Invite Members To Team: {e}</option>)
                                 }
                             </select >
                         </div>
-                        <div className='col-4'>
-
-                        </div>
                     </div>
                     <div className="row mb-3">
                         {usersToInvite.length === 0 ? "No data to show" : usersToInvite.map((e) => {
                             return (
                                 <div className='col-12 mb-4' key={e.id}>
-                                    <div className="card p-4" style={{border: 'none'}}>
+                                    <div className="card p-4" style={{ backgroundColor: "#FCF0D6" }}>
                                         <div className="card-body">
                                             <blockquote className="blockquote mb-0">
                                                 <p>{e.name}</p>
                                                 <div className="d-flex justify-content-between">
                                                     <footer className="blockquote-footer">{e.email}</footer>
-                                                    <button type="button" onClick={() => invite(e)} className="btn btn-dark mx-2">Invite & Join</button>
+                                                    <button type="button" onClick={() => invite(e)} className="btn btn-primary mx-2">Invite & Join</button>
                                                 </div>
                                             </blockquote>
                                         </div>

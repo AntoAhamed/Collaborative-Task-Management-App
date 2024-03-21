@@ -16,11 +16,12 @@ function Task(props) {
 
     return (
         <div className="col-sm-6 mb-3 mb-sm-0 my-4">
-            <div class="card text-bg-primary mb-3" style={{ maxWidth: "40rem" }}>
-                <div class="card-header bg-transparent border-tarnary text-center">Created By {props.users[props.creator - 1].name}({props.users[props.creator - 1].email}) On {props.currentDate} | Priority: {props.priority} | Status: {props.status.status}</div>
+            <div class="card mb-3" style={{ maxWidth: "40rem", backgroundColor: "#E0FCD6" }}>
+                <div class="card-header bg-transparent border-tarnary text-center">Priority: {props.priority} | Status: {props.status.status} | DueDate: {props.date}</div>
                 <div class="card-body">
                     <h4 class="card-title">{props.title}</h4>
                     <p class="card-text">{props.desc}</p>
+                    <p class="card-text"><small class="text-body-secondary">Created By {props.users[props.creator - 1].name} ({props.users[props.creator - 1].email}) On {props.currentDate}</small></p>
                 </div>
                 <div className='p-2 m-2'>
                     <p>Change Task Status</p>
@@ -29,9 +30,11 @@ function Task(props) {
                             return <option key={index} value={index}>{e}</option>
                         })}
                     </select >
-                    <button type="submit" onClick={() => props.editStatus(props.id, selectedStatus)} className="btn btn-lg btn-outline-light mt-2">Save</button>
+                    <div className='d-grid gap-2'>
+                        <button type="submit" onClick={() => props.editStatus(props.id, selectedStatus)} className="btn btn-primary btn-lg mt-2">Save</button>
+                    </div>
                 </div>
-                <div class="card-footer bg-transparent border-tarnary text-center">StatusBy: {props.users[props.status.statusBy - 1].name} | StatusOn: {props.status.statusOn} | DueDate: {props.date}</div>
+                <div class="card-footer bg-transparent border-tarnary text-center">StatusBy: {props.users[props.status.statusBy - 1].name} | StatusOn: {props.status.statusOn}</div>
             </div>
         </div>
 

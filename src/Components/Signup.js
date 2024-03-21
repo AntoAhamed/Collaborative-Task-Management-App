@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Signup(props) {
     return (
-        <div className='container' style={{ marginTop: '9%', marginBottom: '5%', border: "0.5px solid wheat", width: "50%", padding: "3% 10%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
+        <div className='container signup'>
             <div className="col" style={{ textAlign: "center", fontSize: "45px", paddingBottom: "30px" }}>
                 <b>Signup Here</b>
             </div>

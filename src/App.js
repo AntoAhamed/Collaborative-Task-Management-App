@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -8,31 +9,36 @@ import Teams from './Components/Teams';
 import Tasks from './Components/Tasks';
 import CreateTask from './Components/Create_Task';
 import Invitation from './Components/Invitation';
-import { useState, useEffect } from 'react';
+import Home from './Components/Home';
+import About from './Components/About';
+import Contact from './Components/Contact';
+import Features from './Components/Features';
 
 function App() {
   let initUsers;
   if (localStorage.getItem("users") === null) {
     initUsers = [];
-  }
-  else {
+  } else {
     initUsers = JSON.parse(localStorage.getItem("users"));
   }
 
   let initTeams;
   if (localStorage.getItem("teams") === null) {
     initTeams = [];
-  }
-  else {
+  } else {
     initTeams = JSON.parse(localStorage.getItem("teams"));
   }
 
   let initUserId;
-  if(localStorage.getItem("userId")===null){
+  if (localStorage.getItem("userId") === null) {
     initUserId = '';
-  }else{
+  } else {
     initUserId = JSON.parse(localStorage.getItem("userId"));
   }
+
+  //for alert
+  const [alert, setAlert] = useState(false)
+  const [alertMssg, setAlertMssg] = useState('This is an alert.')
 
   //for signup
   const [newName, setNewName] = useState('')
@@ -57,8 +63,7 @@ function App() {
         let id;
         if (users.length === 0) {
           id = 0;
-        }
-        else {
+        } else {
           id = users[users.length - 1].id;
         }
 
@@ -79,12 +84,18 @@ function App() {
 
         localStorage.setItem("users", JSON.stringify(users));
 
-        alert("signup successfull. please go to login page for login.");
+        setAlertMssg("Signup successful. Please go to login page for login.");
+        alertSystem();
+        //alert("signup successfull. please go to login page for login.");
       } else {
-        alert("user already exists!");
+        setAlertMssg("User already exists!");
+        alertSystem();
+        //alert("user already exists!");
       }
     } else {
-      alert("Empty field can't be submited!");
+      setAlertMssg("Empty field can't be submited!");
+      alertSystem();
+      //alert("Empty field can't be submited!");
     }
   }
 
@@ -113,12 +124,18 @@ function App() {
       setPassword('')
 
       if (f === 1) {
-        alert("login successfull");
+        setAlertMssg("Login successful");
+        alertSystem();
+        //alert("login successfull");
       } else {
-        alert("user dose not exist!");
+        setAlertMssg("User dose not exist!");
+        alertSystem();
+        //alert("user dose not exist!");
       }
     } else {
-      alert("Empty field can't be submited");
+      setAlertMssg("Empty field can't be submited!");
+      alertSystem();
+      //alert("Empty field can't be submited");
     }
   }
 
@@ -166,12 +183,18 @@ function App() {
 
         setNewTeam('');
 
-        alert("New team successfully created");
+        setAlertMssg("New team successfully created.");
+        alertSystem();
+        //alert("New team successfully created");
       } else {
-        alert("Team already exists!");
+        setAlertMssg("Team already exists!");
+        alertSystem();
+        //alert("Team already exists!");
       }
     } else {
-      alert("Empty field can't be submited!");
+      setAlertMssg("Empty field can't be submited!");
+      alertSystem();
+      //alert("Empty field can't be submited!");
     }
   }
 
@@ -347,12 +370,16 @@ function App() {
 
           localStorage.setItem("teams", JSON.stringify(teams));
 
-          alert("Task added successfully");
+          setAlertMssg("Task added successfully.");
+          alertSystem();
+          //alert("Task added successfully");
           break;
         }
       }
     } else {
-      alert("Empty field can't be submited!");
+      setAlertMssg("Empty field can't be submited!");
+      alertSystem();
+      //alert("Empty field can't be submited!");
     }
   }
 
@@ -363,7 +390,17 @@ function App() {
     setDesc('')
     setDue('')
 
-    alert("Reseted")
+    setAlertMssg("Reseted successfully.");
+    alertSystem();
+    //alert("Reseted")
+  }
+
+  //function to show alert when needed
+  const alertSystem = () => {
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
   }
 
   useEffect(() => {
@@ -376,15 +413,19 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("userId", JSON.stringify(userId));
-  },[userId])
+  }, [userId])
 
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar userId={userId} setUserId={setUserId} users={users} />}>
-            <Route index element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="signup" element={<Signup newName={newName} setNewName={setNewName} newEmail={newEmail} setNewEmail={setNewEmail} newPassword={newPassword} setNewPassword={setNewPassword} newBio={newBio} setNewBio={setNewBio} signup={signup} />} />
+          <Route path="/" element={<Navbar userId={userId} setUserId={setUserId} users={users} alert={alert} alertMssg={alertMssg} />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="features" element={<Features />} />
+            <Route path="signup" element={userId ? <Profile userId={userId} users={users} /> : <Signup newName={newName} setNewName={setNewName} newEmail={newEmail} setNewEmail={setNewEmail} newPassword={newPassword} setNewPassword={setNewPassword} newBio={newBio} setNewBio={setNewBio} signup={signup} />} />
+            <Route path="login" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="profile" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="teams" element={userId ? <Teams newTeam={newTeam} setNewTeam={setNewTeam} create={create} teams={users[userId - 1]?.teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} setTeams={setTeams} users={users} setUsers={setUsers} userId={userId} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />

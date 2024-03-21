@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Login(props) {
     return (
-        <div className='container' style={{ marginTop: '10%', marginBottom: '5%', border: "0.5px solid wheat", width: "30%", padding: "3%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
+        <div className='container login'>
             <div className="row mb-3">
                 <div className="col" style={{ textAlign: "center", fontSize: "45px", paddingBottom: "30px" }}>
                     <b>Login Here</b>

@@ -23,7 +23,7 @@ function Create_Task(props) {
 
 
     return (
-        <div className='container mb-4' style={{ marginTop: '9%', marginBottom: '5%', width: "50%", padding: "3% 10%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
+        <div className='container mb-4 createTask'>
             <div className="row mb-2">
                 <div className="col" style={{ textAlign: "center", fontSize: "45px" }}>
                     <b>Add Task</b>
@@ -60,8 +60,8 @@ function Create_Task(props) {
                                 }
                             </select >
                         </div>
-                        <button type="submit" onClick={props.addTask} className="btn btn-primary btn-lg">Add</button>
-                        <button type="reset" onClick={props.resetTask} className="btn btn-outline-primary btn-lg mx-2">Reset</button>
+                        <button type="submit" onClick={props.addTask} className="btn btn-success btn-lg">Add</button>
+                        <button type="reset" onClick={props.resetTask} className="btn btn-outline-success btn-lg mx-2">Reset</button>
                     </form>
                 </div>
             </div>

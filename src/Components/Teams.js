@@ -2,7 +2,7 @@ import React from 'react'
 
 function Create_Team(props) {
     return (
-        <div className='container mb-4' style={{ fontSize: '20px', marginTop: '10%', width: "30%", padding: "3%", borderRadius: "10px", backgroundColor: "#96b8fb" }}>
+        <div className='container mb-4 teams'>
             <div className="row mb-2">
                 <div className="col" style={{ textAlign: "center", fontSize: "37px" }}>
                     <b>Create A New Team</b>
@@ -16,7 +16,7 @@ function Create_Team(props) {
                             <input type="text" className="form-control form-control-lg" value={props.newTeam} onChange={(e) => { props.setNewTeam(e.target.value) }} id="team-name" placeholder="Enter team name" autoFocus />
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" onClick={props.create} className="btn btn-primary btn-lg ">Create Team</button>
+                            <button type="submit" onClick={props.create} className="btn btn-success btn-lg ">Create Team</button>
                         </div>
                     </form>
                 </div>
