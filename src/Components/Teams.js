@@ -1,6 +1,8 @@
 import React from 'react'
 
 function Create_Team(props) {
+    const { newTeam, setNewTeam, create, teams } = props;
+
     return (
         <div className='container mb-4 teams'>
             <div className="row mb-2">
@@ -13,10 +15,10 @@ function Create_Team(props) {
                     <form action='' method=''>
                         <div className="mb-3">
                             <label htmlFor="team-name" className="form-label">Team name</label>
-                            <input type="text" className="form-control form-control-lg" value={props.newTeam} onChange={(e) => { props.setNewTeam(e.target.value) }} id="team-name" placeholder="Enter team name" autoFocus />
+                            <input type="text" className="form-control form-control-lg" value={newTeam} onChange={(e) => { setNewTeam(e.target.value) }} id="team-name" placeholder="Enter team name" autoFocus />
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" onClick={props.create} className="btn btn-success btn-lg ">Create Team</button>
+                            <button type="submit" onClick={create} className="btn btn-success btn-lg ">Create Team</button>
                         </div>
                     </form>
                 </div>
@@ -35,7 +37,7 @@ function Create_Team(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.teams.length === 0 ? "No data to show" : props.teams.map((team, index) => {
+                            {teams.length === 0 ? "No data to show" : teams.map((team, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>{team}</td>

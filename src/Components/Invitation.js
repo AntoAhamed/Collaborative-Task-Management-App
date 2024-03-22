@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 function Invitation(props) {
+    //to set users to invite
     const [usersToInvite, setUsersToInvite] = useState([])
     const teamNames = props.teamNames?.map(teamName => teamName)
     const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0])
@@ -33,16 +34,13 @@ function Invitation(props) {
 
     //invite and join
     const invite = (e) => {
-        console.log(e)
         let t = e.teams;
         t = [...t, selectedTeamName];
-        console.log(t);
         e.teams = t;
 
         for (let i = 0; i < props.users?.length; i++) {
             if (props.users[i].id === e.id) {
                 props.users[i].teams = t;
-                console.log(props.users[i].teams)
                 break;
             }
         }
@@ -51,30 +49,20 @@ function Invitation(props) {
 
         localStorage.setItem("users", JSON.stringify(props.users));
 
-        find();
+        find(); //after give an invitation again find who are left to be invited
 
-        /*let tt = [];
-        for (let i = 0; i < usersToInvite.length; i++) {
-            if (usersToInvite[i].id === e.id) {
-                continue;
-            } else {
-                tt.push(usersToInvite[i]);
-            }
-        }
-
-        tmp = tt;*/
-
-        alert(`${e.name} is invited and joined in the team ${selectedTeamName}`)
+        props.setAlertMssg(`${e.name} is invited and joined in the team ${selectedTeamName}`)
+        props.alertSystem()
     }
 
-    //console.log(tmp)
-
+    let pb = teamNames.length;
+    //everytime when selected team name will be changed, it will render to find the users to invite in the selected team
     useEffect(() => {
         find();
     }, [selectedTeamName])
 
     return (
-        <div className='container' style={{ marginTop: '7%' }}>
+        <div className='container' style={pb > 2 ? { paddingBottom: "5rem" } : { paddingBottom: "31rem" }}>
             {teamNames.length === 0 ? "No data to show" :
                 <>
                     <div className="row mb-3">
@@ -90,10 +78,10 @@ function Invitation(props) {
                         {usersToInvite.length === 0 ? "No data to show" : usersToInvite.map((e) => {
                             return (
                                 <div className='col-12 mb-4' key={e.id}>
-                                    <div className="card p-4" style={{ backgroundColor: "#FCF0D6" }}>
+                                    <div className="card p-4" style={{ backgroundColor: "#CBBEFE" }}>
                                         <div className="card-body">
                                             <blockquote className="blockquote mb-0">
-                                                <p>{e.name}</p>
+                                                <p><strong>{e.name}</strong></p>
                                                 <div className="d-flex justify-content-between">
                                                     <footer className="blockquote-footer">{e.email}</footer>
                                                     <button type="button" onClick={() => invite(e)} className="btn btn-primary mx-2">Invite & Join</button>

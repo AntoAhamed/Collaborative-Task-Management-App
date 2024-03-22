@@ -5,18 +5,21 @@ import Alert from './Alert';
 function Navbar(props) {
     const navigate = useNavigate()
 
+    // eslint-disable-next-line
+    const { userId, setUserId, users, alert, alertMssg } = props;
+
     //logout
     const logout = () => {
-        props.setUserId('')
-        localStorage.setItem("userId", JSON.stringify(props.userId))
-        navigate('/')
+        setUserId('')
+        localStorage.setItem("userId", JSON.stringify(userId))
+        navigate('/login')
     }
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand p-4" style={{ fontSize: '25px', fontWeight: '800' }} >CTMA</Link>
+                    <Link className="navbar-brand">CTMA</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -34,7 +37,7 @@ function Navbar(props) {
                             <li className="nav-item">
                                 <Link className="nav-link" aria-current="page" to="/features">Features</Link>
                             </li>
-                            {!props.userId ?
+                            {!userId ?
                                 <>
                                     <li className="nav-item">
                                         <Link className="nav-link" aria-current="page" to="/login">Login</Link>
@@ -44,10 +47,10 @@ function Navbar(props) {
                                     </li>
                                 </> : ''
                             }
-                            {props.userId ?
+                            {userId ?
                                 <>
                                     <li className="nav-item">
-                                        <Link className="nav-link" aria-current="page" to="/profile">{/*props.users[props.userId - 1].name*/}Profile</Link>
+                                        <Link className="nav-link" aria-current="page" to="/profile">{/*users[userId - 1].name*/}Profile</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" aria-current="page" to="/teams">Teams</Link>
@@ -60,16 +63,14 @@ function Navbar(props) {
                                     </li>
                                 </> : ''
                             }
-                            {props.alert === true ?
-                                <li className='mx-4'>
-                                    <Alert alertMssg={props.alertMssg} />
-                                </li> : ''}
                         </ul>
-                        {props.userId ?
-                            <button onClick={() => { logout() }} className="btn btn-dark text-light d-flex">Logout</button> : ''}
+                        {userId ?
+                            <button onClick={() => { logout() }} className="btn btn-dark text-light d-flex nav-item">LogOut</button> : ''}
                     </div>
                 </div>
             </nav>
+
+            {alert === true ? <Alert alertMssg={alertMssg} /> : ''}
 
             <Outlet />
         </>

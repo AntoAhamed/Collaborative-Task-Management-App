@@ -4,14 +4,21 @@ body {
   color: black;
 }
 
+.App .navbar .navbar-brand {
+  font-size: 25px;
+  font-weight: 800;
+  margin: 1% 2%;
+  color: rgb(196, 246, 201);
+}
+
 .App .navbar .nav-item {
   font-size: 20px;
   font-weight: 600;
-  margin: 0 0.7rem;
+  margin: 0.3rem;
 }
 
 .App .createTask {
-  margin-top: 9%;
+  margin-top: 2%;
   margin-bottom: 5%;
   width: 50%;
   padding: 3% 10%;
@@ -20,7 +27,7 @@ body {
 }
 
 .App .login {
-  margin-top: 10%;
+  margin-top: 2%;
   margin-bottom: 5%;
   border: 0.5px solid wheat;
   width: 30%;
@@ -30,7 +37,7 @@ body {
 }
 
 .App .signup {
-  margin-top: 9%;
+  margin-top: 2%;
   margin-bottom: 5%;
   border: 0.5px solid wheat;
   width: 50%;
@@ -41,8 +48,8 @@ body {
 
 .App .profile {
   font-size: 20px;
-  margin-top: 10%;
-  margin-bottom: 5%;
+  margin-top: 2%;
+  margin-bottom: 2.5%;
   width: 30%;
   padding: 3%;
   border-radius: 10px;
@@ -51,12 +58,19 @@ body {
 
 .App .teams {
   font-size: 20px;
-  margin-top: 10%;
+  margin-top: 2%;
   margin-bottom: 5%;
   width: 30%;
   padding: 3%;
   border-radius: 10px;
   background-color: #96b8fb;
+}
+
+.App #footer {
+  background-color: black;
+  color: white;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 @media screen and (max-width: 768px) {}

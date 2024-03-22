@@ -2,6 +2,10 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar';
+import Home from './Components/Home';
+import About from './Components/About';
+import Contact from './Components/Contact';
+import Features from './Components/Features';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Profile from './Components/Profile';
@@ -9,12 +13,10 @@ import Teams from './Components/Teams';
 import Tasks from './Components/Tasks';
 import CreateTask from './Components/Create_Task';
 import Invitation from './Components/Invitation';
-import Home from './Components/Home';
-import About from './Components/About';
-import Contact from './Components/Contact';
-import Features from './Components/Features';
+import Footer from './Components/Footer';
 
 function App() {
+  //to get users
   let initUsers;
   if (localStorage.getItem("users") === null) {
     initUsers = [];
@@ -22,6 +24,7 @@ function App() {
     initUsers = JSON.parse(localStorage.getItem("users"));
   }
 
+  //to get teams
   let initTeams;
   if (localStorage.getItem("teams") === null) {
     initTeams = [];
@@ -29,6 +32,7 @@ function App() {
     initTeams = JSON.parse(localStorage.getItem("teams"));
   }
 
+  //to get logged in user
   let initUserId;
   if (localStorage.getItem("userId") === null) {
     initUserId = '';
@@ -36,7 +40,7 @@ function App() {
     initUserId = JSON.parse(localStorage.getItem("userId"));
   }
 
-  //for alert
+  //for alert system
   const [alert, setAlert] = useState(false)
   const [alertMssg, setAlertMssg] = useState('This is an alert.')
 
@@ -86,16 +90,13 @@ function App() {
 
         setAlertMssg("Signup successful. Please go to login page for login.");
         alertSystem();
-        //alert("signup successfull. please go to login page for login.");
       } else {
         setAlertMssg("User already exists!");
         alertSystem();
-        //alert("user already exists!");
       }
     } else {
       setAlertMssg("Empty field can't be submited!");
       alertSystem();
-      //alert("Empty field can't be submited!");
     }
   }
 
@@ -126,20 +127,17 @@ function App() {
       if (f === 1) {
         setAlertMssg("Login successful");
         alertSystem();
-        //alert("login successfull");
       } else {
         setAlertMssg("User dose not exist!");
         alertSystem();
-        //alert("user dose not exist!");
       }
     } else {
       setAlertMssg("Empty field can't be submited!");
       alertSystem();
-      //alert("Empty field can't be submited");
     }
   }
 
-  //new team
+  //add a new team
   const [newTeam, setNewTeam] = useState('')
 
   const create = (e) => {
@@ -164,8 +162,7 @@ function App() {
         let id;
         if (teams.length === 0) {
           id = 0;
-        }
-        else {
+        } else {
           id = teams[teams.length - 1].id;
         }
 
@@ -185,16 +182,13 @@ function App() {
 
         setAlertMssg("New team successfully created.");
         alertSystem();
-        //alert("New team successfully created");
       } else {
         setAlertMssg("Team already exists!");
         alertSystem();
-        //alert("Team already exists!");
       }
     } else {
       setAlertMssg("Empty field can't be submited!");
       alertSystem();
-      //alert("Empty field can't be submited!");
     }
   }
 
@@ -318,11 +312,11 @@ function App() {
     }
   ])*/
 
-  //store in local storage
+  //to set users and teams which are stored in local storage
   const [users, setUsers] = useState(initUsers)
   const [teams, setTeams] = useState(initTeams)
 
-  //add task
+  //to add new task
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [due, setDue] = useState('')
@@ -342,8 +336,7 @@ function App() {
           let id, tasks = teams[i].tasks;
           if (tasks.length === 0) {
             id = 0;
-          }
-          else {
+          } else {
             id = tasks[tasks.length - 1].id;
           }
 
@@ -372,17 +365,16 @@ function App() {
 
           setAlertMssg("Task added successfully.");
           alertSystem();
-          //alert("Task added successfully");
           break;
         }
       }
     } else {
       setAlertMssg("Empty field can't be submited!");
       alertSystem();
-      //alert("Empty field can't be submited!");
     }
   }
 
+  //to clear user inputs from add task form
   const resetTask = (e) => {
     e.preventDefault();
 
@@ -392,7 +384,6 @@ function App() {
 
     setAlertMssg("Reseted successfully.");
     alertSystem();
-    //alert("Reseted")
   }
 
   //function to show alert when needed
@@ -403,6 +394,7 @@ function App() {
     }, 3000);
   }
 
+  //everytime when users, teams and userId will change, this 3 useEffect hooks will render and update their states
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users])
@@ -428,12 +420,13 @@ function App() {
             <Route path="login" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="profile" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="teams" element={userId ? <Teams newTeam={newTeam} setNewTeam={setNewTeam} create={create} teams={users[userId - 1]?.teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} setTeams={setTeams} users={users} setUsers={setUsers} userId={userId} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
+            <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} setTeams={setTeams} users={users} setUsers={setUsers} userId={userId} setAlertMssg={setAlertMssg} alertSystem={alertSystem} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="create_task" element={userId ? <CreateTask title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} due={due} setDue={setDue} prio={prio} setPrio={setPrio} tea={tea} setTea={setTea} teamNames={users[userId - 1]?.teams} teams={teams} addTask={addTask} resetTask={resetTask} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="invitation" element={userId ? <Invitation teamNames={users[userId - 1]?.teams} users={users} setUsers={setUsers} teams={teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
+            <Route path="invitation" element={userId ? <Invitation teamNames={users[userId - 1]?.teams} users={users} setUsers={setUsers} teams={teams} setAlertMssg={setAlertMssg} alertSystem={alertSystem} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
           </Route>
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }

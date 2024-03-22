@@ -3,6 +3,7 @@ import Task from './Task'
 import { Link } from 'react-router-dom'
 
 function Team(props) {
+    //to set tasks
     const [tasks, setTasks] = useState([])
     const teamNames = props.teamNames?.map(teamName => teamName) //status
     const [selectedTeamName, setSelectedTeamName] = useState(teamNames[0]) // selected status
@@ -14,6 +15,7 @@ function Team(props) {
         console.log(selectedTeamName);
     }
 
+    //to get tasks of the user for a particular team
     const getTasks = () => {
         for (let i = 0; i < teams?.length; i++) {
             if (teams[i].name === selectedTeamName) {
@@ -22,12 +24,8 @@ function Team(props) {
         }
     }
 
-    //to edit status
-    //const [newStatus, setNewStatus] = useState('')
-
+    //to change task status
     const editStatus = (id, newStatus) => {
-        console.log(newStatus);
-
         const now = new Date();
 
         let t = tasks;
@@ -55,15 +53,19 @@ function Team(props) {
 
         getTasks();
 
-        alert(`Status marked as ${newStatus}`);
+        props.setAlertMssg(`Status marked as ${newStatus}`)
+        props.alertSystem()
     }
 
+    let pb = tasks.length;
+
+    //everytime when selected team name will be changed, it will render to get the users tasks for the team
     useEffect(() => {
         getTasks();
     }, [selectedTeamName])
 
     return (
-        <div className='container' style={{ marginTop: '7%' }}>
+        <div className='container' style={pb > 2 ? { paddingBottom: "5rem" } : { paddingBottom: "19.7rem" }}>
             <div className="row mb-3">
                 {/*<div className='col-4'>
                     <form className="d-flex py-4" role="search">
@@ -92,9 +94,11 @@ function Team(props) {
             <div className="row mb-3">
                 <div className="col-4" style={{ textAlign: "center", fontSize: "20px" }}>
                     {teamNames.length === 0 ?
-                        <button type="button" onClick={()=>alert("You have to create a team first to assign a task.")} className="btn btn-success">Add A New Task</button> :
-                        <Link to="/create_task"><button type="submit" className="btn btn-success">Add A New Task</button></Link>
-                    }
+                        <button type="button" onClick={() => {
+                            props.setAlertMssg("You have to create a team first to assign a task.");
+                            props.alertSystem();
+                        }} className="btn btn-success">Add A New Task</button> :
+                        <Link to="/create_task"><button type="submit" className="btn btn-success">Add A New Task</button></Link>}
                 </div>
             </div>
             <div className="row mb-4">

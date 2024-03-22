@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 function Create_Task(props) {
+    //to set task priorities
     const priorities = ["Low", "Medium", "High"];
     const handleAddrTypeChangeOfPriority = (e) => {
         const selectedPriority = priorities[e.target.value];
@@ -8,6 +9,7 @@ function Create_Task(props) {
         console.log(selectedPriority);
     }
 
+    //to set team to give a task
     const teamNames = props.teamNames?.map(teamName => teamName)
     const teams = props.teams?.map(team => team)
     const handleAddrTypeChange = (e) => {
@@ -16,6 +18,7 @@ function Create_Task(props) {
         console.log(selectedTeamName);
     }
 
+    //to set priority and team for the first render
     useEffect(() => {
         props.setPrio(priorities[0]);
         props.setTea(teamNames[0]);
@@ -48,7 +51,7 @@ function Create_Task(props) {
                             <label htmlFor="priority" className="form-label">Priority Level</label>
                             < select onChange={e => handleAddrTypeChangeOfPriority(e)} className="form-select form-select-lg" id="priority" aria-label="Default select example">
                                 {
-                                    priorities.map((e, index) => <option key={index} value={index}>{e}{console.log(e)}</option>)
+                                    priorities.map((e, index) => <option key={index} value={index}>{e}</option>)
                                 }
                             </select >
                         </div>
@@ -56,7 +59,7 @@ function Create_Task(props) {
                             <label htmlFor="team" className="form-label">Team</label>
                             < select onChange={e => handleAddrTypeChange(e)} className="form-select form-select-lg" id="team" aria-label="Default select example">
                                 {
-                                    teamNames.map((e, index) => <option key={index} value={index}>{e}{console.log(e)}</option>)
+                                    teamNames.map((e, index) => <option key={index} value={index}>{e}</option>)
                                 }
                             </select >
                         </div>
