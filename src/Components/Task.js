@@ -12,7 +12,7 @@ function Task(props) {
 
     return (
         <div className="col-sm-6 mb-3 mb-sm-0 my-4">
-            <div class="card mb-3" style={{ maxWidth: "40rem", backgroundColor: "#82FC58" }}>
+            <div class="card mb-3" style={{ maxWidth: "40rem", backgroundColor: "#82FC58", border: "none" }}>
                 <div class="card-header bg-transparent border-tarnary text-center">Priority: <strong>{props.priority}</strong> | Status: <strong>{props.status.status}</strong> | DueDate: <strong>{props.date}</strong></div>
                 <div class="card-body">
                     <h4 class="card-title">{props.title}</h4>

@@ -69,7 +69,7 @@ function Invitation(props) {
                         <div className="col mt-4">
                             < select onChange={e => handleAddrTypeChange(e)} className="form-select form-select-lg mb-3" aria-label="Default select example">
                                 {
-                                    teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>Invite Members To Team: {e}</option>)
+                                    teamNames.map((e, index) => <option key={index} value={index} style={{ textAlign: "center" }}>Invite Members To Team : {e}</option>)
                                 }
                             </select >
                         </div>
@@ -78,7 +78,7 @@ function Invitation(props) {
                         {usersToInvite.length === 0 ? "No data to show" : usersToInvite.map((e) => {
                             return (
                                 <div className='col-12 mb-4' key={e.id}>
-                                    <div className="card p-4" style={{ backgroundColor: "#CBBEFE" }}>
+                                    <div className="card p-4" style={{ backgroundColor: "#CBBEFE", border: "none" }}>
                                         <div className="card-body">
                                             <blockquote className="blockquote mb-0">
                                                 <p><strong>{e.name}</strong></p>

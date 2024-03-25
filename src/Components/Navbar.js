@@ -17,7 +17,7 @@ function Navbar(props) {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <Link className="navbar-brand">CTMA</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +40,10 @@ function Navbar(props) {
                             {!userId ?
                                 <>
                                     <li className="nav-item">
-                                        <Link className="nav-link" aria-current="page" to="/login">Login</Link>
+                                        <Link className="nav-link" aria-current="page" to="/login">LogIn</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link" aria-current="page" to="/signup">Signup</Link>
+                                        <Link className="nav-link" aria-current="page" to="/signup">SignUp</Link>
                                     </li>
                                 </> : ''
                             }
@@ -65,7 +65,7 @@ function Navbar(props) {
                             }
                         </ul>
                         {userId ?
-                            <button onClick={() => { logout() }} className="btn btn-dark text-light d-flex nav-item">LogOut</button> : ''}
+                            <button onClick={() => { logout() }} className="btn d-flex nav-item logout">LogOut</button> : ''}
                     </div>
                 </div>
             </nav>

@@ -1,20 +1,42 @@
 body {
-  background-color: rgb(198, 206, 250);
+  background-color: rgb(235, 236, 247);
   letter-spacing: 0.5px;
   color: black;
+}
+
+.App .navbar {
+  background-color: #f72f2f;
 }
 
 .App .navbar .navbar-brand {
   font-size: 25px;
   font-weight: 800;
   margin: 1% 2%;
-  color: rgb(196, 246, 201);
+  color: white;
 }
 
 .App .navbar .nav-item {
   font-size: 20px;
   font-weight: 600;
   margin: 0.3rem;
+}
+
+.App .navbar .nav-item .nav-link {
+  color: white;
+}
+
+.App .navbar .nav-item .nav-link:hover {
+  color: wheat;
+}
+
+.App .logout {
+  background-color: #f72f2f;
+  color: white;
+}
+
+.App .logout:hover {
+  background-color: white;
+  color: #f72f2f;
 }
 
 .App .createTask {
@@ -49,7 +71,7 @@ body {
 .App .profile {
   font-size: 20px;
   margin-top: 2%;
-  margin-bottom: 2.5%;
+  margin-bottom: 8%;
   width: 30%;
   padding: 3%;
   border-radius: 10px;
@@ -67,7 +89,7 @@ body {
 }
 
 .App #footer {
-  background-color: black;
+  background-color: #f72f2f;
   color: white;
   padding-top: 3%;
   padding-bottom: 3%;

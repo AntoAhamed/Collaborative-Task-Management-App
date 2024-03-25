@@ -63,8 +63,10 @@ function Create_Task(props) {
                                 }
                             </select >
                         </div>
-                        <button type="submit" onClick={props.addTask} className="btn btn-success btn-lg">Add</button>
-                        <button type="reset" onClick={props.resetTask} className="btn btn-outline-success btn-lg mx-2">Reset</button>
+                        <div className="btn-group btn-group-justified" role="group" aria-label="Basic example">
+                            <button type="submit" onClick={props.addTask} className="btn btn-success btn-lg">Add</button>
+                            <button type="reset" onClick={props.resetTask} className="btn btn-outline-success btn-lg">Reset</button>
+                        </div>
                     </form>
                 </div>
             </div>
