@@ -13,7 +13,7 @@ function Home() {
       <div className=''>
         <img src={cover} alt='...' height={'500px'} width={'100%'} style={{ position: 'absolute', zIndex: '-1', opacity: '0.7' }} />
         <div className='text-center' style={{ padding: '15% 2%', color: 'black', opacity: '0.9' }}>
-          <h1 style={{ fontSize: '75px', fontWeight: '800', backgroundColor: 'wheat' }}>Welcome To CTMA</h1>
+          <h1 style={{ fontSize: '75px', fontWeight: '800', backgroundColor: 'wheat' }}>Welcome To Collabify</h1>
           <p style={{ fontSize: '25px', fontWeight: '600', backgroundColor: 'wheat' }}>A collaborative task management system to manage team works and achive success together.</p>
         </div>
       </div>
@@ -36,7 +36,7 @@ function Home() {
             <h1 style={{ fontSize: '45px', fontWeight: '700' }}>About Us</h1>
             <div>
               <p>
-                Welcome to <strong>CTMA</strong>, a React-based note-taking application designed to help you stay organized and productive.
+                Welcome to <strong>Collabify</strong>, a React-based note-taking application designed to help you stay organized and productive.
                 Our team is made up of experienced developers and designers who are passionate about creating high-quality applications that meet the needs of our users.
                 We're dedicated to delivering a seamless and intuitive experience that makes it easy to manage tasks anytime, anywhere.
               </p>
@@ -99,8 +99,8 @@ function Home() {
             <h1 style={{ fontSize: '45px', fontWeight: '700' }}>Connect With Us</h1>
             <div>
               <p>
-                Thank you for your interest in <strong>CTMA</strong> We'd love to hear from you and are here to help with any questions, comments, or concerns you may have.
-                If you have any questions about using our app or need technical support, please reach out to our support team and mail at <strong>support@ctma.com</strong>.
+                Thank you for your interest in <strong>Collabify</strong> We'd love to hear from you and are here to help with any questions, comments, or concerns you may have.
+                If you have any questions about using our app or need technical support, please reach out to our support team and mail at <strong>support@collabify.com</strong>.
                 We're available 24/7 to assist you and ensure that you have a seamless experience with our app.
               </p>
             </div>
