@@ -57,6 +57,31 @@ function Team(props) {
         props.alertSystem()
     }
 
+    //to delete task
+    const dltTask = (task) => {
+        let t = tasks;
+
+        t = t.filter(e=>e!==task);
+
+        setTasks(t);
+
+        for (let i = 0; i < teams.length; i++) {
+            if (teams[i].name === selectedTeamName) {
+                teams[i].tasks = t;
+                break;
+            }
+        }
+
+        localStorage.setItem("teams", JSON.stringify(teams));
+
+        props.setTeams(JSON.parse(localStorage.getItem("teams")));
+
+        getTasks();
+
+        props.setAlertMssg("Task successfully deleted.")
+        props.alertSystem()
+    }
+
     let pb = tasks.length;
 
     //everytime when selected team name will be changed, it will render to get the users tasks for the team
@@ -103,7 +128,7 @@ function Team(props) {
             </div>
             <div className="row mb-4">
                 {tasks.length === 0 ? "No data to show" : tasks.map((task) => {
-                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} currentDate={task.currentDate} priority={task.priority} status={task.status} creator={task.creator} users={users} editStatus={editStatus} />
+                    return <Task key={task.id} task={task} id={task.id} title={task.title} desc={task.desc} date={task.date} currentDate={task.currentDate} priority={task.priority} status={task.status} creator={task.creator} users={users} editStatus={editStatus} dltTask={dltTask} />
                 })}
             </div>
         </div>

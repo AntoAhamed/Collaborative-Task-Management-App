@@ -19,14 +19,14 @@ function Home() {
       </div>
 
       <div className='container d-flex justify-content-around' style={{ padding: '5% 2% 10% 2%' }}>
-        <div class="card mx-2" style={{ height: "20rem", width: "18rem", border: "none", borderRadius: "0" }}>
-          <img src={createteams} class="card-img-top" alt="..." height={'100%'} style={{ borderRadius: "0" }} />
+        <div className="card mx-2" style={{ height: "20rem", width: "18rem", border: "none", borderRadius: "0" }}>
+          <img src={createteams} className="card-img-top" alt="..." height={'100%'} style={{ borderRadius: "0" }} />
         </div>
-        <div class="card mx-2" style={{ height: "20rem", width: "18rem", border: "none", borderRadius: "0" }}>
-          <img src={invite} class="card-img-top" alt="..." height={'100%'} style={{ borderRadius: "0" }} />
+        <div className="card mx-2" style={{ height: "20rem", width: "18rem", border: "none", borderRadius: "0" }}>
+          <img src={invite} className="card-img-top" alt="..." height={'100%'} style={{ borderRadius: "0" }} />
         </div>
-        <div class="card mx-2" style={{ height: "20rem", width: "18rem", border: "none", borderRadius: "0" }}>
-          <img src={teamwork} class="card-img-top" alt="..." height={'100%'} style={{ borderRadius: "0" }} />
+        <div className="card mx-2" style={{ height: "20rem", width: "18rem", border: "none", borderRadius: "0" }}>
+          <img src={teamwork} className="card-img-top" alt="..." height={'100%'} style={{ borderRadius: "0" }} />
         </div>
       </div>
 
@@ -50,42 +50,42 @@ function Home() {
 
       <h1 className='text-center' style={{ fontSize: '50px', fontWeight: '700', paddingTop: '8%' }}>Features</h1>
       <div className='container d-flex justify-content-around' style={{ padding: '5% 2% 10% 2%' }}>
-        <div class="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
-          <img src={any} class="card-img-top" alt="..." height={'100%'} />
-          <div class="card-body">
-            <p class="card-text text-center">Collaboration</p>
+        <div className="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
+          <img src={any} className="card-img-top" alt="..." height={'100%'} />
+          <div className="card-body">
+            <p className="card-text text-center">Collaboration</p>
           </div>
         </div>
-        <div class="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
-          <img src={teamwork} class="card-img-top" alt="..." height={'100%'} />
-          <div class="card-body">
-            <p class="card-text text-center">Team Work</p>
+        <div className="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
+          <img src={teamwork} className="card-img-top" alt="..." height={'100%'} />
+          <div className="card-body">
+            <p className="card-text text-center">Team Work</p>
           </div>
         </div>
-        <div class="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
-          <img src={createteams} class="card-img-top" alt="..." height={'100%'} />
-          <div class="card-body">
-            <p class="card-text text-center">Create Teams</p>
+        <div className="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
+          <img src={createteams} className="card-img-top" alt="..." height={'100%'} />
+          <div className="card-body">
+            <p className="card-text text-center">Create Teams</p>
           </div>
         </div>
       </div>
       <div className='container d-flex justify-content-around' style={{ padding: '0 2% 10% 2%' }}>
-        <div class="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
-          <img src={collaboration} class="card-img-top" alt="..." height={'100%'} />
-          <div class="card-body">
-            <p class="card-text text-center">Manage Tasks</p>
+        <div className="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
+          <img src={collaboration} className="card-img-top" alt="..." height={'100%'} />
+          <div className="card-body">
+            <p className="card-text text-center">Manage Tasks</p>
           </div>
         </div>
-        <div class="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
-          <img src={invite} class="card-img-top" alt="..." height={'100%'} />
-          <div class="card-body">
-            <p class="card-text text-center">Invite People</p>
+        <div className="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
+          <img src={invite} className="card-img-top" alt="..." height={'100%'} />
+          <div className="card-body">
+            <p className="card-text text-center">Invite People</p>
           </div>
         </div>
-        <div class="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
-          <img src={achive} class="card-img-top" alt="..." height={'100%'} />
-          <div class="card-body">
-            <p class="card-text text-center">Achive Success</p>
+        <div className="card mx-2" style={{ height: "18rem", width: "18rem", border: "none" }}>
+          <img src={achive} className="card-img-top" alt="..." height={'100%'} />
+          <div className="card-body">
+            <p className="card-text text-center">Achive Success</p>
           </div>
         </div>
       </div>

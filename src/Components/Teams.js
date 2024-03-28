@@ -17,7 +17,7 @@ function Create_Team(props) {
                             <label htmlFor="team-name" className="form-label">Team name</label>
                             <input type="text" className="form-control form-control-lg" value={newTeam} onChange={(e) => { setNewTeam(e.target.value) }} id="team-name" placeholder="Enter team name" autoFocus />
                         </div>
-                        <div class="d-grid gap-2">
+                        <div className="d-grid gap-2">
                             <button type="submit" onClick={create} className="btn btn-success btn-lg ">Create Team</button>
                         </div>
                     </form>

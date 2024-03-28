@@ -328,8 +328,6 @@ function App() {
 
     const now = new Date();
 
-    console.log(title, desc, due, prio, tea)
-
     if (title !== '' && desc !== '' && due !== '' && prio !== '' && tea !== '') {
       for (let i = 0; i < teams.length; i++) {
         if (teams[i].name === tea) {
