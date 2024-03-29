@@ -44,6 +44,10 @@ function App() {
   const [alert, setAlert] = useState(false)
   const [alertMssg, setAlertMssg] = useState('This is an alert.')
 
+  //to set users and teams which are stored in local storage
+  const [users, setUsers] = useState(initUsers)
+  const [teams, setTeams] = useState(initTeams)
+
   //for signup
   const [newName, setNewName] = useState('')
   const [newEmail, setNewEmail] = useState('')
@@ -88,7 +92,7 @@ function App() {
 
         localStorage.setItem("users", JSON.stringify(users));
 
-        setAlertMssg("Signup successful. Please go to login page for login.");
+        setAlertMssg("Congratulations! Signup successfull.");
         alertSystem();
       } else {
         setAlertMssg("User already exists!");
@@ -190,6 +194,40 @@ function App() {
       setAlertMssg("Empty field can't be submited!");
       alertSystem();
     }
+  }
+
+  //remove team (We are working on this feature...)
+  const dltTeam = (team) => {
+    /*let tmpTeams, tmpTasks, f = 0;
+
+    tmpTeams = teams;
+
+    console.log(teams);
+
+    for (let i = 0; i < tmpTeams.length; i++) {
+      if (tmpTeams[i].name === team) {
+        tmpTasks = tmpTeams[i].tasks;
+        if (tmpTasks.length === 0) {
+          f = 1;
+        }
+        break;
+      }
+    }
+
+    if (f === 0) {
+      tmpTeams = tmpTeams.filter(e => e.name !== team);
+
+      setTeams(tmpTeams);
+
+      setAlertMssg(`Team ${team} successfully removed.`);
+      alertSystem();
+    }else{
+      setAlertMssg("This team has some tasks. So, can't remove this team right now.");
+      alertSystem();
+    }*/
+
+    setAlertMssg("We are working on this feature. Thanks to be with us. Stay tuned.");
+    alertSystem();
   }
 
   /*const [users, setUsers] = useState([
@@ -312,10 +350,6 @@ function App() {
     }
   ])*/
 
-  //to set users and teams which are stored in local storage
-  const [users, setUsers] = useState(initUsers)
-  const [teams, setTeams] = useState(initTeams)
-
   //to add new task
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
@@ -417,7 +451,7 @@ function App() {
             <Route path="signup" element={userId ? <Profile userId={userId} users={users} /> : <Signup newName={newName} setNewName={setNewName} newEmail={newEmail} setNewEmail={setNewEmail} newPassword={newPassword} setNewPassword={setNewPassword} newBio={newBio} setNewBio={setNewBio} signup={signup} />} />
             <Route path="login" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="profile" element={userId ? <Profile userId={userId} users={users} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
-            <Route path="teams" element={userId ? <Teams newTeam={newTeam} setNewTeam={setNewTeam} create={create} teams={users[userId - 1]?.teams} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
+            <Route path="teams" element={userId ? <Teams newTeam={newTeam} setNewTeam={setNewTeam} create={create} teams={users[userId - 1]?.teams} dltTeam={dltTeam} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="tasks" element={userId ? <Tasks teamNames={users[userId - 1]?.teams} teams={teams} setTeams={setTeams} users={users} setUsers={setUsers} userId={userId} setAlertMssg={setAlertMssg} alertSystem={alertSystem} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="create_task" element={userId ? <CreateTask title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} due={due} setDue={setDue} prio={prio} setPrio={setPrio} tea={tea} setTea={setTea} teamNames={users[userId - 1]?.teams} teams={teams} addTask={addTask} resetTask={resetTask} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />
             <Route path="invitation" element={userId ? <Invitation teamNames={users[userId - 1]?.teams} users={users} setUsers={setUsers} teams={teams} setAlertMssg={setAlertMssg} alertSystem={alertSystem} /> : <Login email={email} password={password} setEmail={setEmail} setPassword={setPassword} login={login} />} />

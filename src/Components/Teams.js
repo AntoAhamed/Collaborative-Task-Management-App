@@ -40,7 +40,9 @@ function Create_Team(props) {
                             {teams.length === 0 ? "No data to show" : teams.map((team, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{team}</td>
+                                        <td>
+                                            <span>{team}</span>
+                                        </td>
                                     </tr>
                                 )
                             })}

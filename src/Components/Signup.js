@@ -1,8 +1,17 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup(props) {
+    const navigate = useNavigate();
+
     const { newName, setNewName, newEmail, setNewEmail, newPassword, setNewPassword, newBio, setNewBio, signup } = props;
+
+    const handleSignup = (e) => {
+        if (newName !== '' && newEmail !== '' && newPassword !== '' && newBio !== '') {
+            signup(e);
+            navigate('/login');
+        }
+    }
 
     return (
         <div className='container signup'>
@@ -28,7 +37,7 @@ function Signup(props) {
                             <label htmlFor="bio" className="form-label">Bio</label>
                             <textarea className="form-control form-control-lg" value={newBio} onChange={(e) => { setNewBio(e.target.value) }} id="bio" rows="3" placeholder="Enter your bio"></textarea>
                         </div>
-                        <button type="submit" onClick={signup} className="btn btn-lg btn-primary">SignUp</button>
+                        <button type="submit" onClick={handleSignup} className="btn btn-lg btn-primary">SignUp</button>
                     </form>
                 </div>
             </div>
